@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import Home from './sections/Home';
+import LogIn from './sections/LogIn';
+import Navbar from './components/Navbar';
+
+const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  return loggedIn ? (
+    <div className="container mx-auto">
+      <Navbar logOut={() => setLoggedIn(false)} />
+      <Home />
     </div>
+  ) : (
+    <LogIn logIn={() => setLoggedIn(true)} />
   );
-}
+};
 
 export default App;
